@@ -113,51 +113,63 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnDivision.setOnClickListener {
-            if(checkEmpty() && operation.getText().toString()==""){
+            if(checkEmpty() && operation.getText().toString().isEmpty()){
                 prevOperation.setText(btnDivision.getText().toString())
                 operation.setText(calcText.getText().toString())
                 calcText.setText("")
             }
-            else if(checkEmpty() && operation.getText().toString()!=""){
+            else if(checkEmpty() && operation.getText().toString().isNotEmpty()){
                 operation.setText(calculateResult())
                 prevOperation.setText(btnDivision.getText().toString())
                 calcText.setText("")
+            }
+            else if(operation.getText().toString().isNotEmpty() && calcText.getText().toString().isEmpty()){
+                prevOperation.setText(btnDivision.getText().toString())
             }
         }
         btnMultiplication.setOnClickListener {
-            if(checkEmpty() && operation.getText().toString()==""){
+            if(checkEmpty() && operation.getText().toString().isEmpty()){
                 prevOperation.setText(btnMultiplication.getText().toString())
                 operation.setText(calcText.getText().toString())
                 calcText.setText("")
             }
-            else if(checkEmpty() && operation.getText().toString()!=""){
+            else if(checkEmpty() && operation.getText().toString().isNotEmpty()){
                 operation.setText(calculateResult())
                 prevOperation.setText(btnMultiplication.getText().toString())
                 calcText.setText("")
+            }
+            else if(operation.getText().toString().isNotEmpty() && calcText.getText().toString().isEmpty()){
+                prevOperation.setText(btnMultiplication.getText().toString())
             }
         }
         btnMinus.setOnClickListener {
-            if(checkEmpty() && operation.getText().toString()==""){
+            if(checkEmpty() && operation.getText().toString().isEmpty()){
                 prevOperation.setText(btnMinus.getText().toString())
                 operation.setText(calcText.getText().toString())
                 calcText.setText("")
             }
-            else if(checkEmpty() && operation.getText().toString()!=""){
+            else if(checkEmpty() && operation.getText().toString().isNotEmpty()){
                 operation.setText(calculateResult())
                 prevOperation.setText(btnMinus.getText().toString())
                 calcText.setText("")
+            }
+            else if(operation.getText().toString().isNotEmpty() && calcText.getText().toString().isEmpty()){
+                prevOperation.setText(btnMinus.getText().toString())
             }
         }
         btnPlus.setOnClickListener {
-            if(checkEmpty() && operation.getText().toString()==""){
+            if(checkEmpty() && operation.getText().toString().isEmpty()){
                 prevOperation.setText(btnPlus.getText().toString())
                 operation.setText(calcText.getText().toString())
                 calcText.setText("")
             }
-            else if(checkEmpty() && operation.getText().toString()!=""){
+            else if(checkEmpty() && operation.getText().toString().isNotEmpty()){
                 operation.setText(calculateResult())
                 prevOperation.setText(btnPlus.getText().toString())
                 calcText.setText("")
+            }
+            else if(operation.getText().toString().isNotEmpty() && calcText.getText().toString().isEmpty()){
+                prevOperation.setText(btnPlus.getText().toString())
             }
         }
         btnComma.setOnClickListener {
@@ -168,7 +180,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         btnResult.setOnClickListener {
-            if(operation.getText().toString() != "")
+            if(operation.getText().toString().isNotEmpty())
             {
                 calcText.setText(calculateResult().run(::placeComma))
                 prevOperation.setText("")
@@ -183,13 +195,7 @@ class MainActivity : AppCompatActivity() {
             prevOperation.setText("")
             operation.setText("")
         }
-
-
-
-    }
-
-
-    private fun checkEmpty(): Boolean {
+    }private fun checkEmpty(): Boolean {
         return calcText.getText().toString().isNotEmpty()
     }
 
