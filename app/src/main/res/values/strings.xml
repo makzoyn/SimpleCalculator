@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">BasicCalculator</string>
-    <string name="etString">10</string>
     <string name="btn1">1</string>
     <string name="btn2">2</string>
     <string name="btn3">3</string>
@@ -17,7 +16,6 @@
     <string name="btn0">0</string>
     <string name="btn_comma">,</string>
     <string name="btn_minus">-</string>
-    <string name="etText">0</string>
     <string name="ac">AC</string>
     <string name="back"><![CDATA[<-]]></string>
 </resources>
