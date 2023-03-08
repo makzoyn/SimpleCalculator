@@ -11,27 +11,27 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var operation : TextView
-    lateinit var prevOperation : TextView
-    lateinit var calcText : EditText
-    lateinit var btnDivision: Button
-    lateinit var btnPlus: Button
-    lateinit var btnMultiplication: Button
-    lateinit var btnMinus: Button
-    lateinit var btnComma: Button
-    lateinit var btnResult: Button
-    lateinit var btnOne: Button
-    lateinit var btnTwo: Button
-    lateinit var btnThree: Button
-    lateinit var btnFour: Button
-    lateinit var btnFive: Button
-    lateinit var btnSix: Button
-    lateinit var btnSeven: Button
-    lateinit var btnEight: Button
-    lateinit var btnNine: Button
-    lateinit var btnZero: Button
-    lateinit var btnClear: Button
-    lateinit var btnDelete: Button
+    private lateinit var operation : TextView
+    private lateinit var prevOperation : TextView
+    private lateinit var calcText : EditText
+    private lateinit var btnDivision: Button
+    private lateinit var btnPlus: Button
+    private lateinit var btnMultiplication: Button
+    private lateinit var btnMinus: Button
+    private lateinit var btnComma: Button
+    private lateinit var btnResult: Button
+    private lateinit var btnOne: Button
+    private lateinit var btnTwo: Button
+    private lateinit var btnThree: Button
+    private lateinit var btnFour: Button
+    private lateinit var btnFive: Button
+    private lateinit var btnSix: Button
+    private lateinit var btnSeven: Button
+    private lateinit var btnEight: Button
+    private lateinit var btnNine: Button
+    private lateinit var btnZero: Button
+    private lateinit var btnClear: Button
+    private lateinit var btnDelete: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,167 +62,209 @@ class MainActivity : AppCompatActivity() {
 
 
         btnOne.setOnClickListener {
-            val str = calcText.getText().toString()+
-                    btnOne.getText().toString()
+            val str = calcText.text.toString()+
+                    btnOne.text.toString()
             calcText.setText(str)
         }
         btnTwo.setOnClickListener {
-            val str = calcText.getText().toString()+
-                    btnTwo.getText().toString()
+            val str = calcText.text.toString()+
+                    btnTwo.text.toString()
             calcText.setText(str)
         }
         btnThree.setOnClickListener {
-            val str = calcText.getText().toString()+
-                    btnThree.getText().toString()
+            val str = calcText.text.toString()+
+                    btnThree.text.toString()
             calcText.setText(str)
         }
         btnFour.setOnClickListener {
-            val str = calcText.getText().toString()+
-                    btnFour.getText().toString()
+            val str = calcText.text.toString()+
+                    btnFour.text.toString()
             calcText.setText(str)
         }
         btnFive.setOnClickListener {
-            val str = calcText.getText().toString()+
-                    btnFive.getText().toString()
+            val str = calcText.text.toString()+
+                    btnFive.text.toString()
             calcText.setText(str)
         }
         btnSix.setOnClickListener {
-            val str = calcText.getText().toString()+
-                    btnSix.getText().toString()
+            val str = calcText.text.toString()+
+                    btnSix.text.toString()
             calcText.setText(str)
         }
         btnSeven.setOnClickListener {
-            val str = calcText.getText().toString()+
-                    btnSeven.getText().toString()
+            val str = calcText.text.toString()+
+                    btnSeven.text.toString()
             calcText.setText(str)
         }
         btnEight.setOnClickListener {
-            val str = calcText.getText().toString()+
-                    btnEight.getText().toString()
+            val str = calcText.text.toString()+
+                    btnEight.text.toString()
             calcText.setText(str)
         }
         btnNine.setOnClickListener {
-            val str = calcText.getText().toString()+
-                    btnNine.getText().toString()
+            val str = calcText.text.toString()+
+                    btnNine.text.toString()
             calcText.setText(str)
         }
         btnZero.setOnClickListener {
-            val str = calcText.getText().toString()+
-                    btnZero.getText().toString()
+            val str = calcText.text.toString()+
+                    btnZero.text.toString()
             calcText.setText(str)
         }
 
         btnDivision.setOnClickListener {
-            if(checkEmpty() && operation.getText().toString().isEmpty()){
-                prevOperation.setText(btnDivision.getText().toString())
-                operation.setText(calcText.getText().toString())
+            if(!checkEmptyCalc() && checkEmptyOperation()){
+                prevOperation.text = btnDivision
+                    .text
+                    .toString()
+                operation.text = calcText
+                    .text
+                    .toString()
                 calcText.setText("")
             }
-            else if(checkEmpty() && operation.getText().toString().isNotEmpty()){
-                operation.setText(calculateResult())
-                prevOperation.setText(btnDivision.getText().toString())
+            else if(!checkEmptyCalc() && !checkEmptyOperation()){
+                operation.text = calculateResult().run(::placeComma)
+                prevOperation.text = btnDivision
+                    .text
+                    .toString()
                 calcText.setText("")
             }
-            else if(operation.getText().toString().isNotEmpty() && calcText.getText().toString().isEmpty()){
-                prevOperation.setText(btnDivision.getText().toString())
+            else if(checkEmptyCalc() && !checkEmptyOperation()){
+                prevOperation.text = btnDivision
+                    .text
+                    .toString()
             }
         }
         btnMultiplication.setOnClickListener {
-            if(checkEmpty() && operation.getText().toString().isEmpty()){
-                prevOperation.setText(btnMultiplication.getText().toString())
-                operation.setText(calcText.getText().toString())
+            if(!checkEmptyCalc() && checkEmptyOperation()){
+                prevOperation.text = btnMultiplication
+                    .text
+                    .toString()
+                operation.text = calcText
+                    .text
+                    .toString()
                 calcText.setText("")
             }
-            else if(checkEmpty() && operation.getText().toString().isNotEmpty()){
-                operation.setText(calculateResult())
-                prevOperation.setText(btnMultiplication.getText().toString())
+            else if(!checkEmptyCalc() && !checkEmptyOperation()){
+                operation.text = calculateResult().run(::placeComma)
+                prevOperation.text = btnMultiplication
+                    .text
+                    .toString()
                 calcText.setText("")
             }
-            else if(operation.getText().toString().isNotEmpty() && calcText.getText().toString().isEmpty()){
-                prevOperation.setText(btnMultiplication.getText().toString())
+            else if(checkEmptyCalc() && !checkEmptyOperation()){
+                prevOperation.text = btnMultiplication
+                    .text
+                    .toString()
             }
         }
         btnMinus.setOnClickListener {
-            if(checkEmpty() && operation.getText().toString().isEmpty()){
-                prevOperation.setText(btnMinus.getText().toString())
-                operation.setText(calcText.getText().toString())
+            if(!checkEmptyCalc() && checkEmptyOperation()){
+                prevOperation.text = btnMinus
+                    .text
+                    .toString()
+                operation.text = calcText
+                    .text
+                    .toString()
                 calcText.setText("")
             }
-            else if(checkEmpty() && operation.getText().toString().isNotEmpty()){
-                operation.setText(calculateResult())
-                prevOperation.setText(btnMinus.getText().toString())
+            else if(!checkEmptyCalc() && !checkEmptyOperation()){
+                operation.text = calculateResult().run(::placeComma)
+                prevOperation.text = btnMinus
+                    .text
+                    .toString()
                 calcText.setText("")
             }
-            else if(operation.getText().toString().isNotEmpty() && calcText.getText().toString().isEmpty()){
-                prevOperation.setText(btnMinus.getText().toString())
+            else if(checkEmptyCalc() && !checkEmptyOperation()){
+                prevOperation.text = btnMinus
+                    .text
+                    .toString()
             }
         }
         btnPlus.setOnClickListener {
-            if(checkEmpty() && operation.getText().toString().isEmpty()){
-                prevOperation.setText(btnPlus.getText().toString())
-                operation.setText(calcText.getText().toString())
+            if(!checkEmptyCalc() && checkEmptyOperation()){
+                prevOperation.text = btnPlus
+                    .text
+                    .toString()
+                operation.text = calcText
+                    .text
+                    .toString()
                 calcText.setText("")
             }
-            else if(checkEmpty() && operation.getText().toString().isNotEmpty()){
-                operation.setText(calculateResult())
-                prevOperation.setText(btnPlus.getText().toString())
+            else if(!checkEmptyCalc() && !checkEmptyOperation()){
+                operation.text = calculateResult().run(::placeComma)
+                prevOperation.text = btnPlus
+                    .text
+                    .toString()
                 calcText.setText("")
             }
-            else if(operation.getText().toString().isNotEmpty() && calcText.getText().toString().isEmpty()){
-                prevOperation.setText(btnPlus.getText().toString())
+            else if(checkEmptyCalc() && !checkEmptyOperation()){
+                prevOperation.text = btnPlus
+                    .text
+                    .toString()
             }
         }
         btnComma.setOnClickListener {
-            if(!checkComma(calcText.getText().toString()) && calcText.getText().toString() != ""){
-                val str = calcText.getText().toString()+
-                        btnComma.getText().toString()
+            if(!checkComma(calcText.text.toString()) && !checkEmptyCalc()){
+                val str = calcText.text.toString()+
+                        btnComma.text.toString()
                 calcText.setText(str)
             }
         }
         btnResult.setOnClickListener {
-            if(operation.getText().toString().isNotEmpty())
+            if(!checkEmptyOperation())
             {
                 calcText.setText(calculateResult().run(::placeComma))
-                prevOperation.setText("")
-                operation.setText("")
+                prevOperation.text = ""
+                operation.text = ""
             }
         }
         btnDelete.setOnClickListener {
-            calcText.setText(removeLastChar(calcText.getText().toString()))
+            calcText.setText((calcText
+                .text
+                .toString())
+                .run(::removeLastChar))
         }
         btnClear.setOnClickListener {
             calcText.setText("")
-            prevOperation.setText("")
-            operation.setText("")
+            prevOperation.text = ""
+            operation.text = ""
         }
-    }private fun checkEmpty(): Boolean {
-        return calcText.getText().toString().isNotEmpty()
+    }
+    //проверка поля ввода на пустоту
+    private fun checkEmptyCalc(): Boolean {
+        return calcText.text.toString().isEmpty()
+    }
+    //проверка поля операция на пустоту
+    private fun checkEmptyOperation() : Boolean{
+        return operation.text.toString().isEmpty()
     }
 
-    fun removeLastChar(str: String?): String? {
+    //удаление последнего символа регулярным выражением
+    private fun removeLastChar(str: String?): String? {
         return str?.replaceFirst(".$".toRegex(), "")
     }
-    fun calculateResult(): String {
-        val saveOperation = prevOperation.getText().toString()
-        return when(saveOperation){
+    //подсчет результата калькулятора
+    private fun calculateResult(): String {
+        return when(prevOperation.text.toString()){
             "/" -> {
-                (operation.getText().toString().run(::replaceComma).toDouble() /
-                        calcText.getText().toString().run(::replaceComma).toDouble()).toString()
+                (operation.text.toString().run(::replaceComma).toDouble() /
+                        calcText.text.toString().run(::replaceComma).toDouble()).toString()
 
             }
             "x" -> {
-                (operation.getText().toString().run(::replaceComma).toDouble() *
-                        calcText.getText().toString().run(::replaceComma).toDouble()).toString()
+                (operation.text.toString().run(::replaceComma).toDouble() *
+                        calcText.text.toString().run(::replaceComma).toDouble()).toString()
 
             }
             "+" -> {
-                (operation.getText().toString().run(::replaceComma).toDouble() +
-                        calcText.getText().toString().run(::replaceComma).toDouble()).toString()
+                (operation.text.toString().run(::replaceComma).toDouble() +
+                        calcText.text.toString().run(::replaceComma).toDouble()).toString()
 
             }
             "-" -> {
-                (operation.getText().toString().run(::replaceComma).toDouble() -
-                        calcText.getText().toString().run(::replaceComma).toDouble()).toString()
+                (operation.text.toString().run(::replaceComma).toDouble() -
+                        calcText.text.toString().run(::replaceComma).toDouble()).toString()
 
             }
             else -> {
@@ -230,14 +272,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    fun checkComma(str : String): Boolean{
+    //проверка есть ли в строке запятая
+    private fun checkComma(str : String): Boolean{
         return str.contains(",")
     }
-    fun placeComma(str: String) : String{
+    //две функции для отображения запятой,
+    // когда считаю убираю запятую,
+    // когда вывожу результат добавляю
+    private fun placeComma(str: String) : String{
         return str.replace(".", ",")
     }
-    fun replaceComma(str: String) : String{
+    private fun replaceComma(str: String) : String{
         return str.replace(",", ".")
     }
 
