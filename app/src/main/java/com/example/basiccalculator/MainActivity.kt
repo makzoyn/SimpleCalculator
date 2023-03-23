@@ -250,7 +250,6 @@ class MainActivity : AppCompatActivity() {
             "/" -> {
                 (operation.text.toString().run(::replaceComma).toDouble() /
                         calcText.text.toString().run(::replaceComma).toDouble()).toString()
-
             }
             "x" -> {
                 (operation.text.toString().run(::replaceComma).toDouble() *
